@@ -1,5 +1,5 @@
 # pallas
-Ubuntu base image for GitHub Actions with tools like AWS CLI, Kubectl and others
+Ubuntu base image for GitHub Actions with tools like Kubectl, AWS CLI and others
 
 # Build Image
 

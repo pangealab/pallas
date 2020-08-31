@@ -3,18 +3,21 @@ FROM ubuntu:latest
 # Versions
 ENV KUBECTL_VERSION="1.14.6"
 ENV IAMAUTH_VERSION="1.14.6"
+ENV AWSCLI_VERSION "1.18.128"
 
 # Install Tools
 RUN \
   apt-get update && \
-  apt-get install -y curl bash unzip
+  apt-get install -y python3-pip python3-dev curl bash unzip && \
+  cd /usr/local/bin && \
+  ln -s /usr/bin/python3 python && \
+  pip3 install --upgrade pip  
 
 # Install AWS CLI
+
+# Install AWS CLI 1.x
 RUN \
-  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
-  unzip awscliv2.zip && \
-  ./aws/install && \
-  aws --version
+  pip3 install awscli==${AWSCLI_VERSION} --upgrade --user
 
 # Install Kubectl
 RUN \
@@ -26,4 +29,4 @@ RUN \
 RUN \
   curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/${IAMAUTH_VERSION}/2019-08-22/bin/linux/amd64/aws-iam-authenticator && \
   chmod +x ./aws-iam-authenticator && \
-  mv ./aws-iam-authenticator /usr/local/bin/aws-iam-authenticator  
+  mv ./aws-iam-authenticator /usr/local/bin/aws-iam-authenticator
