@@ -7,6 +7,7 @@ ENV IAMAUTH_VERSION="1.14.6"
 
 # Install Tools
 RUN \
+  apt-get update && \
   apt-get install -y curl bash unzip
 
 # Install Tools for AWS CLI 1.x
