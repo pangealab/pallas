@@ -3,21 +3,29 @@ FROM ubuntu:latest
 # Versions
 ENV KUBECTL_VERSION="1.14.6"
 ENV IAMAUTH_VERSION="1.14.6"
-ENV AWSCLI_VERSION "1.18.128"
+# ENV AWSCLI1_VERSION "1.18.128"
 
 # Install Tools
 RUN \
-  apt-get update && \
-  apt-get install -y python3-pip python3-dev curl bash unzip && \
-  cd /usr/local/bin && \
-  ln -s /usr/bin/python3 python && \
-  pip3 install --upgrade pip
+  apt-get install -y curl bash unzip
 
-# Install AWS CLI
-
+# Install Tools for AWS CLI 1.x
+# RUN \
+#   apt-get update && \
+#   apt-get install -y python3-pip python3-dev curl bash unzip && \
+#   cd /usr/local/bin && \
+#   ln -s /usr/bin/python3 python && \
+#   pip3 install --upgrade pip
 # Install AWS CLI 1.x
+# RUN \
+#   pip3 install awscli==${AWSCLI1_VERSION} --upgrade --user
+
+# Install AWS CLI 2.x
 RUN \
-  pip3 install awscli==${AWSCLI_VERSION} --upgrade --user
+  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+  unzip awscliv2.zip && \
+  ./aws/install && \
+  aws --version
 
 # Install Kubectl
 RUN \
