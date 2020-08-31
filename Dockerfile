@@ -17,7 +17,7 @@ RUN \
 
 # Install AWS CLI 1.x
 RUN \
-  pip3 install awscli==${AWSCLI_VERSION} --upgrade --user
+  pip3 install awscli==${AWSCLI_VERSION}
 
 # Install Kubectl
 RUN \
