@@ -11,13 +11,13 @@ RUN \
   apt-get install -y python3-pip python3-dev curl bash unzip && \
   cd /usr/local/bin && \
   ln -s /usr/bin/python3 python && \
-  pip3 install --upgrade pip  
+  pip3 install --upgrade pip
 
 # Install AWS CLI
 
 # Install AWS CLI 1.x
 RUN \
-  pip3 install awscli==${AWSCLI_VERSION}
+  pip3 install awscli==${AWSCLI_VERSION} --upgrade --user
 
 # Install Kubectl
 RUN \
