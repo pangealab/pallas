@@ -1,4 +1,5 @@
-# pallas
+![Intro](./docs/pallas.png)
+
 Ubuntu base image for GitHub Actions with tools like Kubectl, AWS CLI and others
 
 # Build Image
